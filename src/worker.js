@@ -32,93 +32,115 @@ const FALLBACK = {
 
 // ------------------------------- styles -------------------------------
 const CSS = `
-:root{--bg:#fff;--elev:#fff;--ink:#0f172a;--muted:#64748b;--line:#e7e9f1;--accent:#3b5bfd;
---link:#3b5bfd;--tint:#eef1ff;--tint-ink:#2e40c9;--chip:#f1f3f9;--ok:#15803d;--seek:#3b5bfd;
---shadow:0 1px 2px rgba(15,23,42,.05),0 6px 22px rgba(15,23,42,.07);--nav:rgba(255,255,255,.82);
+:root{--bg:#fbfcff;--band:#f3f6fd;--card:#fff;--ink:#1b2333;--muted:#697089;--line:#e8ecf7;
+--accent:#4361ee;--accent-ink:#3049d6;--mint:#0fb894;--tint:#eef2ff;--chip:#eef1fb;
+--shadow:0 1px 2px rgba(27,35,51,.04),0 10px 34px rgba(27,35,51,.06);--nav:rgba(251,252,255,.86);
 --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif;
 --mono:ui-monospace,'SF Mono',Menlo,'Cascadia Code',monospace}
-@media(prefers-color-scheme:dark){:root{--bg:#0a0e1a;--elev:#141a29;--ink:#e7ecf6;--muted:#8b95ab;
---line:#232c40;--accent:#6f8dff;--link:#8aa4ff;--tint:#182142;--tint-ink:#b8c6ff;--chip:#1a2233;
---ok:#4ade80;--seek:#8aa4ff;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.4);--nav:rgba(10,14,26,.8)}}
+@media(prefers-color-scheme:dark){:root{--bg:#0b0f1a;--band:#10162501;--band:#0f1626;--card:#141b2b;
+--ink:#e6ebf6;--muted:#8a93ab;--line:#222c40;--accent:#7d92ff;--accent-ink:#a6b4ff;--mint:#34d3a6;
+--tint:#172142;--chip:#1a2333;--shadow:0 1px 2px rgba(0,0,0,.3),0 10px 34px rgba(0,0,0,.4);--nav:rgba(11,15,26,.84)}}
 *{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;padding:0 1.25rem}
-main{max-width:960px;margin:0 auto}
-a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline;text-underline-offset:3px}
-nav{position:sticky;top:0;z-index:10;display:flex;flex-wrap:wrap;gap:.35rem 1rem;align-items:center;
-padding:.85rem 1.25rem;background:var(--nav);backdrop-filter:saturate(1.6) blur(10px);
-border-bottom:1px solid var(--line);font-size:.85rem;font-weight:500;margin:0 -1.25rem}
+body{background:var(--bg);color:var(--ink);font:16.5px/1.72 var(--sans);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1060px;margin:0 auto;padding:0 1.6rem}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline;text-underline-offset:3px}
+code{font-family:var(--mono);font-size:.85em;background:var(--chip);border-radius:5px;padding:.12em .42em}
+
+nav{position:sticky;top:0;z-index:20;background:var(--nav);backdrop-filter:saturate(1.7) blur(12px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;flex-wrap:wrap;gap:.4rem 1.15rem;align-items:center;padding:.9rem 1.6rem;
+max-width:1060px;margin:0 auto;font-size:.85rem;font-weight:500}
 nav a{color:var(--muted)}nav a:hover{color:var(--ink);text-decoration:none}
+nav .brand{font-weight:800;color:var(--ink);letter-spacing:-.01em}
 nav .agent{color:var(--accent);font-weight:600}nav .lang{margin-left:auto;color:var(--accent);font-weight:600}
-section{padding:3rem 0;border-bottom:1px solid var(--line);scroll-margin-top:3.6rem}section:last-of-type{border-bottom:none}
-header{padding:3.6rem 0 2.4rem}
-.seal{display:inline-block;background:var(--tint);color:var(--tint-ink);font-size:.72rem;font-weight:700;
-letter-spacing:.12em;text-transform:uppercase;padding:.35rem .75rem;border-radius:999px}
-h1{font-size:3rem;font-weight:800;letter-spacing:-.03em;line-height:1.03;margin:1rem 0 .9rem}
-.lead{font-size:1.24rem;line-height:1.45;max-width:700px;color:var(--ink)}
-.sub{font-size:1.05rem;color:var(--muted);max-width:680px;margin-top:.8rem}
-.agentbar{margin-top:1.4rem;display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;font-size:.9rem;
-background:var(--tint);color:var(--tint-ink);border-radius:12px;padding:.7rem 1rem}
-.agentbar code{background:rgba(59,91,253,.12);color:var(--tint-ink)}
-svg.loop{width:100%;height:auto;margin-top:1.8rem;display:block;border:1px solid var(--line);
-border-radius:16px;padding:.5rem;background:var(--elev);box-shadow:var(--shadow)}
+
+.hero{background:linear-gradient(180deg,var(--tint),transparent 62%)}
+.hero .wrap{padding-top:4.2rem;padding-bottom:3.4rem}
+.eyebrow{display:inline-block;background:var(--card);border:1px solid var(--line);color:var(--accent-ink);
+font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.4rem .8rem;border-radius:999px;box-shadow:var(--shadow)}
+h1{font-size:3.3rem;font-weight:800;letter-spacing:-.035em;line-height:1.02;margin:1.1rem 0 1rem;max-width:16ch}
+.lead{font-size:1.35rem;line-height:1.4;max-width:30ch;color:var(--ink);font-weight:500}
+.sub{font-size:1.06rem;color:var(--muted);max-width:60ch;margin-top:1rem}
+.agentbar{margin-top:1.6rem;display:inline-flex;flex-wrap:wrap;gap:.5rem;align-items:center;font-size:.92rem;
+background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.7rem 1rem;box-shadow:var(--shadow)}
+.agentbar code{color:var(--accent-ink)}
+svg.loop{width:100%;height:auto;margin-top:2.2rem;display:block;border:1px solid var(--line);
+border-radius:18px;padding:.6rem;background:var(--card);box-shadow:var(--shadow)}
 svg.loop .t{font:700 15px var(--sans);fill:var(--ink)}svg.loop .s{font:12.5px var(--sans);fill:var(--muted)}
 svg.loop .g{font:700 12.5px var(--sans);fill:var(--accent);letter-spacing:.03em}
-h2{font-size:1.75rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.5rem}
-.kicker{color:var(--muted);max-width:720px;margin-bottom:1.5rem;font-size:1.02rem}
-h3{font-size:1.1rem;font-weight:700;margin:.35rem 0;letter-spacing:-.01em}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.1rem}
-.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
-.card{background:var(--elev);border:1px solid var(--line);border-radius:16px;padding:1.3rem 1.4rem;box-shadow:var(--shadow)}
-.card p{font-size:.94rem}.card h3{margin-top:0}
+
+.chapter{border-top:1px solid var(--line)}
+.chapter.band{background:var(--band)}
+.chapter .wrap{display:grid;grid-template-columns:250px 1fr;gap:3.2rem;padding-top:4.4rem;padding-bottom:4.4rem}
+@media(max-width:820px){.chapter .wrap{grid-template-columns:1fr;gap:1.4rem;padding-top:3rem;padding-bottom:3rem}}
+.rail{align-self:start}
+@media(min-width:821px){.rail{position:sticky;top:4.2rem}}
+.rail .num{font:700 .78rem/1 var(--mono);color:var(--accent);letter-spacing:.06em}
+.rail h2{font-size:1.5rem;font-weight:800;letter-spacing:-.02em;margin:.5rem 0 .5rem}
+.rail p{font-size:.96rem;color:var(--muted)}
+.body>*+*{margin-top:1.1rem}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}
+.grid.two{grid-template-columns:1fr 1fr}
+@media(max-width:560px){.grid.two{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.25rem 1.35rem;box-shadow:var(--shadow)}
+.card h3{font-size:1.06rem;font-weight:700;margin:0 0 .35rem;letter-spacing:-.01em}
+.card p{font-size:.95rem;color:var(--muted)}
 .card.act{display:flex;flex-direction:column}
 .card.act .go{margin-top:auto;padding-top:.9rem;font-weight:600;color:var(--accent);font-size:.9rem}
-.who{margin-top:.7rem;font-size:.83rem;color:var(--muted)}
-.beats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
-.beats .n{display:inline-block;color:var(--accent);font-size:.72rem;font-weight:700;letter-spacing:.1em;margin-bottom:.15rem}
-.beats p{font-size:.94rem;color:var(--muted)}
-.rules{list-style:none;padding:0;max-width:760px}
-.rules li{position:relative;padding:.55rem 0 .55rem 2.4rem;border-bottom:1px solid var(--line);font-size:1rem}
-.rules li:last-child{border-bottom:none}
-.rules li::before{content:'';position:absolute;left:0;top:.95rem;width:1.1rem;height:1.1rem;border-radius:5px;
-background:var(--tint);border:1.5px solid var(--accent)}
-.rules b{font-weight:700}
-.give{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
-@media(max-width:640px){.give{grid-template-columns:1fr}}
-.give h3{display:flex;align-items:center;gap:.5rem;margin-bottom:.6rem}
-.give ul{list-style:none;padding:0;margin:0}
-.give li{padding:.4rem 0 .4rem 1.5rem;position:relative;font-size:.95rem;color:var(--ink)}
-.give.yes li::before{content:'+';position:absolute;left:0;color:var(--ok);font-weight:800}
+.who{margin-top:.6rem;font-size:.82rem;color:var(--muted)}
+
+.beats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+@media(max-width:560px){.beats{grid-template-columns:1fr}}
+.beat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.15rem;box-shadow:var(--shadow)}
+.beat .n{font:700 .72rem/1 var(--mono);color:var(--accent);letter-spacing:.08em}
+.beat h3{font-size:1rem;font-weight:700;margin:.4rem 0 .3rem}
+.beat p{font-size:.9rem;color:var(--muted)}
+
+.sub-h{font-size:.78rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:.4rem 0 .2rem}
+ol.rules{counter-reset:r;list-style:none;padding:0;margin:0}
+ol.rules li{counter-increment:r;position:relative;padding:.7rem 0 .7rem 2.4rem;border-bottom:1px solid var(--line);font-size:.98rem}
+ol.rules li:last-child{border-bottom:none}
+ol.rules li::before{content:counter(r);position:absolute;left:0;top:.7rem;width:1.6rem;height:1.6rem;
+background:var(--tint);color:var(--accent-ink);border-radius:8px;display:flex;align-items:center;justify-content:center;font:700 .82rem/1 var(--sans)}
+ol.rules b{font-weight:700;color:var(--ink)}
+
+.give ul{list-style:none;padding:0;margin:.4rem 0 0}
+.give li{padding:.42rem 0 .42rem 1.6rem;position:relative;font-size:.94rem;border-bottom:1px solid var(--line)}
+.give li:last-child{border-bottom:none}
+.give.yes li::before{content:'✓';position:absolute;left:0;color:var(--mint);font-weight:800}
 .give.no li{color:var(--muted)}
 .give.no li::before{content:'\\2013';position:absolute;left:0;color:var(--muted);font-weight:800}
-.split{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
-@media(max-width:640px){.split{grid-template-columns:1fr}}
+.give h3 .k{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:.1rem}
+.give.yes h3 .k{color:var(--mint)}.give.no h3 .k{color:var(--muted)}
+
+.reader h3 .k{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:.1rem}
+.reader ol,.reader ul{margin:.5rem 0 0;padding-left:1.15rem;font-size:.92rem;color:var(--muted)}
+.reader li{margin-bottom:.32rem}
+.reader b{color:var(--ink)}
+
 .pills{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.55rem}
 .pill{display:inline-flex;align-items:center;background:var(--chip);color:var(--ink);border-radius:999px;
 padding:.32rem .72rem .32rem .6rem;font-size:.72rem;font-weight:600}
 .pill::before{content:'';width:.5rem;height:.5rem;border-radius:50%;background:var(--pc,transparent);margin-right:.45rem}
 .pill.tier{color:var(--muted)}.pill.tier::before{display:none}
-.facts{margin-top:.55rem;font-size:.86rem;color:var(--muted)}.facts span{white-space:nowrap}
-.meta{margin-top:.7rem;font-size:.83rem;color:var(--muted)}
+.facts{margin-top:.5rem;font-size:.86rem;color:var(--muted)}.facts span{white-space:nowrap}
+.meta{margin-top:.65rem;font-size:.82rem;color:var(--muted)}
 .empty{color:var(--muted)}
-ol.journey{counter-reset:s;list-style:none;padding:0;max-width:740px}
-ol.journey li{counter-increment:s;position:relative;padding:0 0 1.4rem 3.2rem}
-ol.journey li::before{content:counter(s);position:absolute;left:0;top:0;width:2.2rem;height:2.2rem;
+
+ol.journey{counter-reset:s;list-style:none;padding:0;margin:0}
+ol.journey li{counter-increment:s;position:relative;padding:0 0 1.3rem 3rem}
+ol.journey li:last-child{padding-bottom:0}
+ol.journey li::before{content:counter(s);position:absolute;left:0;top:-.1rem;width:2.1rem;height:2.1rem;
 background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}
-ol.journey h3{margin:.15rem 0 .2rem}ol.journey p{font-size:.94rem;color:var(--muted)}
-code{font-family:var(--mono);font-size:.84em;background:var(--chip);border-radius:5px;padding:.12em .4em}
-pre{background:var(--ink);color:#e7ecf6;border-radius:12px;padding:1rem 1.2rem;overflow-x:auto;
-font-size:.82rem;line-height:1.6;box-shadow:var(--shadow)}
-@media(prefers-color-scheme:dark){pre{background:#05070e;border:1px solid var(--line)}}
+ol.journey h3{margin:0 0 .2rem;font-size:1.04rem;font-weight:700}
+ol.journey p{font-size:.93rem;color:var(--muted)}
+pre{background:#0e1424;color:#e7ecf6;border-radius:12px;padding:1rem 1.15rem;overflow-x:auto;font-size:.82rem;line-height:1.55;box-shadow:var(--shadow)}
 pre code{background:none;padding:0;color:inherit;font-size:inherit}
-.cta{display:inline-flex;align-items:center;margin-top:.5rem;background:var(--accent);color:#fff;
-font-size:.9rem;font-weight:600;border-radius:10px;padding:.65rem 1.1rem}.cta:hover{text-decoration:none;filter:brightness(1.08)}
-.readbox{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:.5rem}
-@media(max-width:640px){.readbox{grid-template-columns:1fr}}
-.readbox .card h3 .tag{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-color:var(--accent);display:block;margin-bottom:.2rem}
-.readbox ol,.readbox ul{margin:.6rem 0 0;padding-left:1.1rem;font-size:.92rem;color:var(--muted)}
-.readbox li{margin-bottom:.3rem}
-footer{padding:2.5rem 0 4rem;color:var(--muted);font-size:.88rem}
+.cta{display:inline-flex;align-items:center;background:var(--accent);color:#fff;font-size:.92rem;font-weight:600;
+border-radius:11px;padding:.7rem 1.15rem;box-shadow:var(--shadow)}.cta:hover{text-decoration:none;filter:brightness(1.07)}
+
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:2.4rem;padding-bottom:3.6rem;color:var(--muted);font-size:.88rem}
 `;
 
 // ------------------------------- helpers -------------------------------
@@ -127,7 +149,7 @@ const esc = (s) => String(s == null ? "" : s)
 const pickf = (o, f, lang) => (lang === "zh" && o[f + "_zh"]) ? o[f + "_zh"] : (o[f] || "");
 const T = (lang) => (en, zh) => (lang === "zh" ? zh : en);
 
-const KIND = { offering: { c: "var(--ok)", en: "offering", zh: "提供" }, seeking: { c: "var(--seek)", en: "seeking", zh: "征求" } };
+const KIND = { offering: { c: "var(--mint)", en: "offering", zh: "提供" }, seeking: { c: "var(--accent)", en: "seeking", zh: "征求" } };
 const WHAT = { data: ["data", "数据"], licence: ["licence", "数据授权"], compute: ["compute", "算力"], methods: ["methods", "方法"], ideas: ["ideas", "想法"] };
 const TERMS = { "can-run": ["code comes to it", "代码上门跑"], "can-share": ["can be shared in", "可入圈共享"], "licence-bound": ["licence-bound", "受授权约束"] };
 const STATUS = { incubating: ["#b45309", "incubating", "孵化中"], active: ["#15803d", "active", "进行中"], writing: ["#1d4ed8", "writing", "写作中"], published: ["#7e22ce", "published", "已发表"], archived: ["#6b7280", "archived", "已归档"] };
@@ -196,161 +218,125 @@ function page(lang, data) {
   const projects = data.projects.length ? data.projects.map((p) => projectCard(p, lang)).join("") :
     `<p class="empty">${t("The first projects are being onboarded. ", "首批项目正在入驻。")}<a href="${ISSUES}">${t("Propose one", "提议一个")}</a>.</p>`;
 
+  const chapter = (id, band, num, title, sub, body) =>
+`<section class="chapter${band ? " band" : ""}" id="${id}"><div class="wrap">
+<div class="rail"><span class="num">${num}</span><h2>${title}</h2><p>${sub}</p></div>
+<div class="body">${body}</div>
+</div></section>`;
+
   return `<!doctype html><html lang="${lang === "zh" ? "zh-CN" : "en"}"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${t("Republic of Letters", "文人共和国 · Republic of Letters")}</title>
-<meta name="description" content="${t("You have a question; someone else has the data it needs. Here, you and your AI agents turn that into research — without the data ever changing hands.", "你有问题，别人有数据。在这里，你和你的 AI 代理把它变成研究——数据从不易手。")}">
+<meta name="description" content="${t("Bring a question. Meet the data it needs. Turn it into a paper together — while the data stays where it is.", "带来一个问题，遇见它需要的数据，一起把它变成论文——而数据留在原地。")}">
 <link rel="alternate" type="text/markdown" href="/llms.txt" title="brief for AI agents">
-<style>${CSS}</style></head><body><main>
+<style>${CSS}</style></head><body>
 
-<nav>
+<nav><div class="nav-in">
+<a class="brand" href="/">${t("Republic of Letters", "文人共和国")}</a>
 <a href="#do">${t("Do", "能做什么")}</a><a href="#how">${t("How", "怎么运作")}</a>
-<a href="#rules">${t("Rules", "规则")}</a><a href="#give">${t("Limits", "能力边界")}</a>
-<a href="#agents">${t("For agents", "给代理")}</a><a href="#start">${t("Start", "开始")}</a>
-<a href="#board">${t("Board", "布告栏")}</a>
+<a href="#limits">${t("Limits", "边界")}</a><a href="#readers">${t("Readers", "两种读者")}</a>
+<a href="#start">${t("Start", "开始")}</a><a href="#board">${t("Board", "布告栏")}</a>
 <a class="agent" href="/llms.txt">/llms.txt</a>
-<a class="lang" href="${other}">${t("中文", "English")}</a>
-</nav>
+<a class="lang" href="${other}">${t("中文", "EN")}</a>
+</div></nav>
 
-<header>
-<span class="seal">Respublica Literaria · 2026</span>
+<header class="hero"><div class="wrap">
+<span class="eyebrow">${t("Research by correspondence", "以书信做研究")}</span>
 <h1>${t("Republic of Letters", "文人共和国")}</h1>
-<p class="lead">${t(
-  "You have a question. Someone else has the data it needs. This is where you — and your AI agents — turn that into research, without the data ever changing hands.",
-  "你有一个问题，别人手里有它需要的数据。在这里，你和你的 AI 代理一起把它变成研究——而数据从不易手。")}</p>
+<p class="lead">${t("Bring a question. Meet the data it needs. Write the paper together.", "带来一个问题，遇见它需要的数据，一起写出论文。")}</p>
 <p class="sub">${t(
-  "A collaboration space for faculty, students, and their agents. Work moves as letters: a question and code go out; only results come back; every step stays on the record.",
-  "一个面向教师、学生及其代理的协作空间。工作以书信流动：问题和代码寄出，只有结果寄回，每一步都留在档案里。")}</p>
-<div class="agentbar">🤖 ${t("Are you an AI agent?", "你是 AI 代理吗？")} <a href="/llms.txt"><code>${t("Read", "读")} letters.jupyter.pro/llms.txt</code></a> · ${t("Humans: hand that link to your agent.", "人类：把这个链接交给你的代理。")}</div>
+  "A space for faculty, students, and the AI agents beside them. The data never leaves the hands that hold it — code travels to it, and only results travel back.",
+  "一个面向教师、学生及其身边 AI 代理的空间。数据从不离开持有它的人——代码走过去，只有结果寄回来。")}</p>
+<div class="agentbar">🤖 ${t("An AI agent?", "你是 AI 代理？")} <a href="/llms.txt"><code>letters.jupyter.pro/llms.txt</code></a> · ${t("Humans, hand that link to yours.", "人类：把这个链接交给你的代理。")}</div>
 ${loopSVG(lang)}
-</header>
+</div></header>
 
-<section id="do">
-<h2>${t("What you can do here", "你能在这里做什么")}</h2>
-<p class="kicker">${t("Four ways in. Each is one action.", "四个入口，每个都是一次具体行动。")}</p>
-<div class="grid">
-<article class="card act"><h3>${t("I have an idea — find data", "我有想法——找数据")}</h3>
-<p>${t("Scan the board for a dataset waiting for your question, or apply to a project.", "在布告栏上找一份正等着你问题的数据，或申请加入项目。")}</p>
-<a class="go" href="#board">${t("→ Browse the board", "→ 看布告栏")}</a></article>
-<article class="card act"><h3>${t("I hold data — offer it", "我有数据——放出去")}</h3>
-<p>${t("Post a silhouette of what you hold. Your data never moves; code comes to you.", "登一张你所持数据的剪影。数据从不移动，代码上门。")}</p>
-<a class="go" href="${ISSUES}">${t("→ Post an offering", "→ 登一张提供")}</a></article>
-<article class="card act"><h3>${t("Join a project", "加入项目")}</h3>
-<p>${t("Bring an idea, code, compute, or a licence to a project that's open.", "带着想法、代码、算力或授权，加入一个开放的项目。")}</p>
-<a class="go" href="#board">${t("→ See projects", "→ 看项目")}</a></article>
-<article class="card act"><h3>${t("Start your own", "自己开一个")}</h3>
-<p>${t("The whole protocol is a template — one command creates a private project.", "整套协议就是一个模板——一条命令建一个私有项目。")}</p>
-<a class="go" href="#start">${t("→ How to start", "→ 如何开始")}</a></article>
+${chapter("do", false, "01", t("What you can do", "你能做什么"),
+  t("Four ways in. Each is a single action.", "四个入口，每个都是一次具体行动。"),
+`<div class="grid">
+<article class="card act"><h3>${t("Have an idea", "有想法")}</h3><p>${t("Find a dataset on the board that's waiting for your question.", "在布告栏找一份正等着你问题的数据。")}</p><a class="go" href="#board">${t("→ Browse the board", "→ 看布告栏")}</a></article>
+<article class="card act"><h3>${t("Hold data", "有数据")}</h3><p>${t("Post a silhouette of what you hold. It never moves; code comes to you.", "登一张剪影。数据从不移动，代码上门。")}</p><a class="go" href="${ISSUES}">${t("→ Post an offering", "→ 登一张提供")}</a></article>
+<article class="card act"><h3>${t("Join a project", "加入项目")}</h3><p>${t("Bring an idea, code, compute, or a licence to an open project.", "带想法、代码、算力或授权，加入开放项目。")}</p><a class="go" href="#projects">${t("→ See projects", "→ 看项目")}</a></article>
+<article class="card act"><h3>${t("Start your own", "自己开")}</h3><p>${t("The protocol is a template — one command makes a private project.", "协议就是模板——一条命令建私有项目。")}</p><a class="go" href="#start">${t("→ How to start", "→ 如何开始")}</a></article>
+</div>`)}
+
+${chapter("how", true, "02", t("How it works", "怎么运作"),
+  t("One question becomes one pull request. Three gates keep people in charge.", "一个问题变成一个 Pull Request。三道闸让人始终掌舵。"),
+`<div class="beats">
+<div class="beat"><span class="n">${t("TOPIC", "课题")}</span><h3>${t("One candidate paper", "一篇候选论文")}</h3><p>${t("Hypothesis, falsifier, authorship, and a decision log — one file.", "假设、证伪条件、署名、决策日志——一个文件。")}</p></div>
+<div class="beat"><span class="n">${t("ROUND", "ROUND")}</span><h3>${t("One question, one PR", "一个问题，一个 PR")}</h3><p>${t("Send a question + code; the data side runs it, returns aggregates.", "寄出问题和代码；数据方运行后寄回聚合结果。")}</p></div>
+<div class="beat"><span class="n">${t("GATES", "人闸")}</span><h3>${t("Humans decide", "人来决定")}</h3><p>${t("Topic, data, and merge — opened only by people. Anyone can halt a round.", "课题、数据、合并——只有人能开。任何人都能叫停。")}</p></div>
 </div>
-</section>
+<p class="sub-h">${t("The four rules", "四条规矩")}</p>
+<ol class="rules">
+<li><b>${t("Data never moves.", "数据从不移动。")}</b> ${t("Code travels to the data; only aggregates come back. CI rejects raw data.", "代码走向数据；回来的只有聚合结果。CI 拒绝原始数据。")}</li>
+<li><b>${t("Three gates, opened only by humans.", "三道闸，只有人能开。")}</b> ${t("Choosing a topic, running code on data, and merging — each is a person's call.", "选课题、在数据上跑代码、合并——每件都由人拍板。")}</li>
+<li><b>${t("Agents draft; agents never decide.", "代理起草；代理从不决定。")}</b> ${t("No agent opens a PR, merges, or runs on real data unless its human asked.", "任何代理都不得擅自开 PR、合并或在真实数据上运行，除非它的人要求。")}</li>
+<li><b>${t("Everything on the record.", "全程留痕。")}</b> ${t("Every question, result, and dead end is a versioned file. Failures get a post-mortem.", "每个问题、结果、死路都是带版本的文件。失败有尸检报告。")}</li>
+</ol>`)}
 
-<section id="how">
-<h2>${t("How it works, in 20 seconds", "20 秒看懂运作")}</h2>
-<div class="beats">
-<div><span class="n">${t("1 · TOPIC", "1 · 课题")}</span><h3>${t("One candidate paper", "一篇候选论文")}</h3>
-<p>${t("A topic holds the hypothesis, the falsifier, authorship, and a decision log — one file.", "一个课题装着假设、证伪条件、署名和决策日志——一个文件。")}</p></div>
-<div><span class="n">${t("2 · ROUND", "2 · ROUND")}</span><h3>${t("One question, one PR", "一个问题，一个 PR")}</h3>
-<p>${t("The proposer sends a question + code; the data side runs it and returns aggregates.", "提议方寄出问题和代码；数据方运行后寄回聚合结果。")}</p></div>
-<div><span class="n">${t("3 · GATES", "3 · 人闸")}</span><h3>${t("Humans decide", "人来决定")}</h3>
-<p>${t("Three gates — topic, data, merge — are opened only by people. Anyone can halt a round.", "三道闸——课题、数据、合并——只有人能开。任何人都能叫停一个 round。")}</p></div>
-</div>
-</section>
+${chapter("limits", false, "03", t("What we give, what we don't", "给什么，不给什么"),
+  t("The boundary is the honest part. Know it before you start.", "边界才是诚实的部分。开始前先看清。"),
+`<div class="grid two">
+<div class="give yes"><h3><span class="k">${t("We give you", "我们提供")}</span></h3><ul>
+<li>${t("A protocol you start in one command.", "一条命令即启动的协议。")}</li>
+<li>${t("Safety tooling: scan + human read + sandbox before code touches data.", "安全工具：触碰数据前扫描＋人读＋沙箱。")}</li>
+<li>${t("A permanent, citable archive — failures included.", "永久、可引用的档案——含失败。")}</li>
+<li>${t("A board to find data, collaborators, or a fitting question.", "一块找数据、找人、找合适问题的布告栏。")}</li>
+<li>${t("A provenance label on every result.", "每个结果都带来源等级。")}</li>
+</ul></div>
+<div class="give no"><h3><span class="k">${t("We don't", "我们不做")}</span></h3><ul>
+<li>${t("Host your data or give you compute.", "托管你的数据或提供算力。")}</li>
+<li>${t("Verify your science — the gates are process, not peer review.", "替你验证科学——闸门是流程，不是评审。")}</li>
+<li>${t("Adjudicate authorship — you settle it early, in writing.", "裁决署名——你早早白纸黑字谈定。")}</li>
+<li>${t("Lock you in — leave any time with the whole archive.", "锁定你——随时带走整份档案离开。")}</li>
+</ul></div>
+</div>`)}
 
-<section id="rules">
-<h2>${t("The rules of the house", "这里的规矩")}</h2>
-<p class="kicker">${t("Four lines. They are the design, not etiquette.", "四条。它们是设计本身，不是客套。")}</p>
-<ul class="rules">
-<li><b>${t("Data never moves.", "数据从不移动。")}</b> ${t("Code travels to where the data lives; only aggregates — figures, tables, numbers — come back. CI rejects raw data from every repo.", "代码走向数据所在处；回来的只有聚合结果——图、表、数字。CI 拒绝任何原始数据进仓库。")}</li>
-<li><b>${t("Three gates, opened only by humans.", "三道闸，只有人能开。")}</b> ${t("Choosing a topic (GO/kill + authorship), running code on real data, and merging to the record — each is a person's call.", "选定课题（GO/终止＋署名）、在真实数据上跑代码、合并进档案——每一件都由人拍板。")}</li>
-<li><b>${t("Agents draft; agents never decide.", "代理起草；代理从不决定。")}</b> ${t("No agent opens a PR, merges, or runs on real data unless its human asked. It may scaffold, write, analyse, and comment freely.", "任何代理都不得擅自开 PR、合并或在真实数据上运行，除非它的人要求。搭架子、写作、分析、评论则自由。")}</li>
-<li><b>${t("Everything on the record.", "全程留痕。")}</b> ${t("Every question, result, and dead end is a versioned file. Killed ideas get a post-mortem, not silence.", "每个问题、结果和死路都是带版本的文件。被否的想法有尸检报告，而非沉默。")}</li>
+${chapter("readers", true, "04", t("Two readers", "两种读者"),
+  t("This place is built to be read by people and by agents — differently.", "这个地方为人和代理两种读者而建——各读各的。"),
+`<div class="grid two">
+<article class="card reader"><h3><span class="k">${t("For you", "给你")}</span>${t("How a human reads it", "人怎么读")}</h3>
+<ul>
+<li>${t("5 min — ", "5 分钟——")}<a href="${ORG}/protocol/tree/main/exchange/R000-example-hello">${t("read one letter", "读一封信")}</a></li>
+<li>${t("15 min — ", "15 分钟——")}<a href="${ORG}/protocol/blob/main/AGENTS.md">${t("the whole protocol", "全部协议")}</a></li>
+<li>${t("30 min — the onboarding drill, and you're in.", "30 分钟——入职演练，即入职。")}</li>
 </ul>
-</section>
-
-<section id="give">
-<h2>${t("What we give you — and what we don't", "我们给你什么——以及不给什么")}</h2>
-<p class="kicker">${t("The boundary is the honest part. Know it before you start.", "边界才是诚实的部分。开始前先看清。")}</p>
-<div class="split">
-<div class="give yes"><h3>${t("We give you", "我们提供")}</h3><ul>
-<li>${t("A protocol you start in one command — topics, rounds, gates, all wired in.", "一条命令即启动的协议——课题、round、人闸全部内置。")}</li>
-<li>${t("Safety tooling: every piece of code is scanned, human-read, and sandboxed before it touches data.", "安全工具：任何代码触碰数据前都经扫描、人工阅读、沙箱运行。")}</li>
-<li>${t("A permanent, citable archive — including the failures.", "一份永久、可引用的档案——连失败也在内。")}</li>
-<li>${t("A board to find data, collaborators, or a question worth your data.", "一块布告栏，用来找数据、找合作者、或找配得上你数据的问题。")}</li>
-<li>${t("A provenance label on every published result.", "每个公开结果都带来源等级标签。")}</li>
-</ul></div>
-<div class="give no"><h3>${t("We don't", "我们不做")}</h3><ul>
-<li>${t("Host your data or give you compute — those stay with their owner.", "托管你的数据或提供算力——它们留在持有者手里。")}</li>
-<li>${t("Verify your science — the gates are process, not peer review.", "替你验证科学——闸门是流程，不是同行评审。")}</li>
-<li>${t("Adjudicate authorship or disputes — the protocol makes you settle them early, in writing.", "裁决署名或纠纷——协议要求你早早白纸黑字谈定。")}</li>
-<li>${t("Lock you in — it's plain GitHub; leave any time with the whole archive.", "锁定你——就是普通 GitHub；随时带走整份档案离开。")}</li>
-</ul></div>
-</div>
-</section>
-
-<section id="agents">
-<h2>${t("For your agent", "给你的代理")}</h2>
-<p class="kicker">${t("This place is built to be read by agents too. Hand yours the brief; it will know how to act.", "这个地方也是为代理阅读而建的。把简报交给你的代理，它就知道怎么做。")}</p>
-<div class="agentbar" style="margin-bottom:1.4rem">🤖 <a href="/llms.txt"><code>letters.jupyter.pro/llms.txt</code></a> — ${t("the machine-readable operating contract. Also served if an agent fetches the bare domain.", "机器可读的操作契约。代理直接抓取裸域名时也会返回它。")}</div>
-<div class="readbox">
-<article class="card"><h3><span class="tag">${t("Context load order", "上下文加载顺序")}</span>${t("How an agent reads a project", "代理如何读一个项目")}</h3>
-<ol>
-<li>${t("protocol/AGENTS.md — the contract", "protocol/AGENTS.md——契约")}</li>
-<li>${t("PROJECT.md — members, Runner, data", "PROJECT.md——成员、执行方、数据")}</li>
-<li>${t("the topic's TOPIC.md", "该课题的 TOPIC.md")}</li>
-<li>${t("that topic's merged rounds (newest first)", "该课题已合并的 round（由新到旧）")}</li>
-<li>${t("the open PR thread", "打开的 PR 线程")}</li>
-</ol></article>
-<article class="card"><h3><span class="tag">${t("Autonomy limits", "自主权边界")}</span>${t("May, and may not", "可以，与不可以")}</h3>
+<p style="margin-top:.7rem;font-size:.92rem;color:var(--muted)">${t("You decide at the gates. You are the author; the agent is the pen.", "你在闸口决策。你是作者，代理是笔。")}</p></article>
+<article class="card reader"><h3><span class="k">${t("For your agent", "给你的代理")}</span>${t("How an agent reads it", "代理怎么读")}</h3>
+<p style="font-size:.92rem;color:var(--muted)">${t("Hand it ", "把 ")}<a href="/llms.txt"><code>/llms.txt</code></a>${t(" — the machine-readable contract. It learns:", " 交给它——机器可读的契约。它会学到：")}</p>
 <ul>
-<li><b>${t("May:", "可以：")}</b> ${t("scaffold, draft ASK/code, analyse, search, comment.", "搭架子、起草 ASK/代码、分析、检索、评论。")}</li>
-<li><b>${t("May not:", "不可以：")}</b> ${t("open a PR, merge, close, or run code on real data — unless its human asked.", "开 PR、合并、关闭、或在真实数据上运行——除非它的人要求。")}</li>
-<li>${t("Unsure? Ask its own human — never the other side's agent.", "拿不准？问它自己的人——绝不问对方的代理。")}</li>
+<li><b>${t("Read order:", "读序：")}</b> AGENTS.md → PROJECT.md → TOPIC.md → ${t("merged rounds → open PR", "已合并 round → 打开的 PR")}</li>
+<li><b>${t("May:", "可以：")}</b> ${t("scaffold, draft, analyse, comment.", "搭架子、起草、分析、评论。")}</li>
+<li><b>${t("May not:", "不可以：")}</b> ${t("open a PR, merge, or run on data — unless its human asked.", "开 PR、合并、在数据上运行——除非它的人要求。")}</li>
 </ul></article>
-</div>
-</section>
+</div>`)}
 
-<section id="you">
-<h2>${t("For you, the human", "给你，人类")}</h2>
-<div class="readbox">
-<article class="card"><h3><span class="tag">${t("Read", "阅读")}</span>${t("How to understand this fast", "如何快速读懂")}</h3>
-<ul>
-<li>${t("5 min — ", "5 分钟——")}<a href="${ORG}/protocol/tree/main/exchange/R000-example-hello">${t("read one letter (a full round)", "读一封信（一个完整 round）")}</a></li>
-<li>${t("15 min — ", "15 分钟——")}<a href="${ORG}/protocol/blob/main/AGENTS.md">${t("the protocol, the whole rulebook", "协议，全部规则")}</a></li>
-<li>${t("30 min — the onboarding drill, and you're in", "30 分钟——入职演练，即入职")}</li>
-</ul></article>
-<article class="card"><h3><span class="tag">${t("Your role", "你的角色")}</span>${t("You are the author", "你是作者")}</h3>
-<p>${t("You decide at the three gates. The agent is the pen — it drafts and runs the legwork, but the questions, the calls, and the authorship are yours.", "你在三道闸口决策。代理是笔——它起草、跑腿，但问题、决定和署名都归你。")}</p></article>
-</div>
-</section>
-
-<section id="start">
-<h2>${t("How to start", "如何开始")}</h2>
-<ol class="journey">
-<li><h3>${t("Look around", "先逛逛")}</h3><p>${t("Browse the board and projects below; read one letter to feel the loop.", "看看下面的布告栏和项目；读一封信，体会一下循环。")}</p></li>
-<li><h3>${t("Pick your door", "选一扇门")}</h3><p><a href="${ISSUES}">${t("Apply to a project, post a notice, or propose one", "申请加入、登布告，或提议一个新项目")}</a>${t(" — say who you are and what you bring.", "——说明你是谁、带来什么。")}</p></li>
-<li><h3>${t("Onboard with your agent", "带上代理入职")}</h3><p>${t("The guide takes you from no account to working, written for your agent. It ends with a drill: one practice round.", "指南把你从没有账号带到可以工作，写给你的代理执行。结尾是一次演练：一个练习 round。")}</p></li>
-<li><h3>${t("Work in rounds, decide at the gates", "以 round 工作，在闸口决策")}</h3><p>${t("Propose code; results come back in-thread; humans call GO and merge. What survives becomes the archive.", "提出代码；结果寄回同一线程；人来判 GO 和合并。留存下来的成为档案。")}</p></li>
+${chapter("start", false, "05", t("Get started", "动手开始"),
+  t("From curious to contributing.", "从好奇到贡献。"),
+`<ol class="journey">
+<li><h3>${t("Look around", "先逛逛")}</h3><p>${t("Browse the board and projects; read one letter to feel the loop.", "看看布告栏和项目；读一封信，体会循环。")}</p></li>
+<li><h3>${t("Pick your door", "选一扇门")}</h3><p><a href="${ISSUES}">${t("Apply, post a notice, or propose a project", "申请、登布告，或提议项目")}</a> — ${t("say who you are and what you bring.", "说明你是谁、带来什么。")}</p></li>
+<li><h3>${t("Onboard with your agent", "带上代理入职")}</h3><p>${t("The guide takes you from no account to working, and ends with a drill: one practice round.", "指南把你从没有账号带到能工作，结尾是一次演练：一个练习 round。")}</p></li>
+<li><h3>${t("Work in rounds", "以 round 工作")}</h3><p>${t("Propose code; results come back in-thread; humans call GO and merge.", "提出代码；结果寄回同一线程；人来判 GO 和合并。")}</p></li>
 </ol>
-<p style="margin-top:.5rem"><strong>${t("Already a team?", "已经有团队？")}</strong> ${t("Take the machinery directly:", "直接拿走整套机制：")}</p>
+<p class="sub-h" style="margin-top:1.4rem">${t("Already a team? Take the machinery", "已有团队？直接拿走机制")}</p>
 <pre><code>gh repo create &lt;owner&gt;/&lt;name&gt; --template ${PROTOCOL_TEMPLATE} --private</code></pre>
-<a class="cta" href="${ISSUES}">${t("Apply, propose, or post a notice →", "申请、提议或登布告 →")}</a>
-</section>
+<p style="margin-top:1.1rem"><a class="cta" href="${ISSUES}">${t("Apply, propose, or post a notice →", "申请、提议或登布告 →")}</a></p>`)}
 
-<section id="board">
-<h2>${t("The board", "布告栏")}</h2>
-<p class="kicker">${t("Silhouettes only — offering (I hold data / licence / compute / methods) and seeking (I need them). Coarse by design: nothing here can be copied, only recognised. Every notice expires.", "只登剪影——提供（我有数据/授权/算力/方法）与征求（我需要它们）。粗粒度是刻意的：这上面没有能被抄走的东西，只有能被认出的轮廓。每张布告都有有效期。")}</p>
-<div class="grid">${board}</div>
-</section>
+${chapter("board", true, "06", t("The board", "布告栏"),
+  t("Silhouettes only — who holds data, who needs it. Coarse by design; every notice expires.", "只登剪影——谁有数据、谁需要。粗粒度是刻意的；每张都有有效期。"),
+`<div class="grid">${board}</div>`)}
 
-<section id="projects">
-<h2>${t("Projects", "项目")}</h2>
-<p class="kicker">${t("Research lives in private repos; cards show only what each project approved.", "研究在私有仓库里进行；卡片只展示各项目批准公开的部分。")}</p>
-<div class="grid">${projects}</div>
-</section>
+${chapter("projects", false, "07", t("Projects", "项目"),
+  t("Research lives in private repos; cards show only what each project approved.", "研究在私有仓库进行；卡片只展示各项目批准公开的部分。"),
+`<div class="grid">${projects}</div>`)}
 
-<footer>${t("Named for the 17th-century scholars' network that did science by mail. ", "名字取自十七世纪靠书信做科学的学者网络。")}
-<a href="${ORG}">${t("The org", "组织")}</a> · <a href="${ORG}/protocol">${t("the protocol", "协议")}</a> · <a href="/llms.txt">/llms.txt</a> · <a href="${other}">${t("中文", "English")}</a></footer>
-</main></body></html>`;
+<footer><div class="wrap">
+${t("Named for the 17th-century scholars' network that did science by mail. ", "名字取自十七世纪靠书信做科学的学者网络。")}
+<a href="${ORG}">${t("The org", "组织")}</a> · <a href="${ORG}/protocol">${t("the protocol", "协议")}</a> · <a href="/llms.txt">/llms.txt</a> · <a href="${other}">${t("中文", "English")}</a>
+</div></footer>
+</body></html>`;
 }
 
 // ------------------------------- the agent brief -------------------------------
@@ -462,7 +448,6 @@ export default {
     if (p === "/health") return new Response("ok", { headers: H("text/plain") });
 
     if (p === "/" || p === "/zh") {
-      // content negotiation: a bare fetch by an agent gets the brief, not the HTML
       const ua = request.headers.get("user-agent") || "";
       const accept = request.headers.get("accept") || "";
       const wantsHuman = url.searchParams.has("view") || accept.includes("text/html");
@@ -475,7 +460,6 @@ export default {
       return new Response(page(p === "/zh" ? "zh" : "en", data), { headers: H("text/html; charset=utf-8") });
     }
 
-    // unknown -> home
     return Response.redirect(url.origin + "/", 302);
   },
 };
