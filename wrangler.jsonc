@@ -1,0 +1,10 @@
+{
+  "name": "letters",
+  "main": "src/worker.js",
+  "compatibility_date": "2024-11-01",
+  "account_id": "8937d4abe2c393f4227393a216b3c647",
+  "routes": [
+    { "pattern": "letters.jupyter.pro", "custom_domain": true }
+  ],
+  "observability": { "enabled": true }
+}
