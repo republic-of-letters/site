@@ -27,7 +27,17 @@ const FALLBACK = {
       expires: "2027-01",
     },
   ],
-  projects: [],
+  projects: [
+    {
+      id: "sandbox",
+      title: "Sandbox — your first letter",
+      title_zh: "沙盒 — 你的第一封信",
+      blurb: "A public NYC yellow-taxi sample where anyone and their agent walk one complete round — ask, code, safety-scan, run, result, merge — in about thirty minutes. A CI robot plays the Runner.",
+      blurb_zh: "在公开的纽约出租车样本上，任何人和他的代理都能在约三十分钟内走完整整一轮——提问、写码、安全扫描、运行、出结果、合并。CI 机器人担任执行方。",
+      status: "active", tier: "open", since: "2026-07", people: 1,
+      contact: "@alonegg", repo: "https://github.com/republic-of-letters/sandbox",
+    },
+  ],
 };
 
 // ------------------------------- styles -------------------------------
@@ -235,7 +245,7 @@ function page(lang, data) {
 <a class="brand" href="/">${t("Republic of Letters", "文人共和国")}</a>
 <a href="#do">${t("Do", "能做什么")}</a><a href="#how">${t("How", "怎么运作")}</a>
 <a href="#limits">${t("Limits", "边界")}</a><a href="#readers">${t("Readers", "两种读者")}</a>
-<a href="#start">${t("Start", "开始")}</a><a href="#board">${t("Board", "布告栏")}</a>
+<a href="#start">${t("Start", "开始")}</a><a href="#projects">${t("Projects", "项目")}</a><a href="#board">${t("Board", "布告栏")}</a>
 <a class="agent" href="/llms.txt">/llms.txt</a>
 <a class="lang" href="${other}">${t("中文", "EN")}</a>
 </div></nav>
@@ -252,11 +262,11 @@ ${loopSVG(lang)}
 </div></header>
 
 ${chapter("do", false, "01", t("What you can do", "你能做什么"),
-  t("Four ways in. Each is a single action.", "四个入口，每个都是一次具体行动。"),
+  t("Four ways in. The fastest is to just try it.", "四个入口。最快的一个，是直接试一次。"),
 `<div class="grid">
-<article class="card act"><h3>${t("Have an idea", "有想法")}</h3><p>${t("Find a dataset on the board that's waiting for your question.", "在布告栏找一份正等着你问题的数据。")}</p><a class="go" href="#board">${t("→ Browse the board", "→ 看布告栏")}</a></article>
+<article class="card act"><h3>${t("Try it in 30 minutes", "30 分钟试一次")}</h3><p>${t("The sandbox: on public data, you and your agent walk one whole round — a robot runs your code and replies. No account approval, no waiting.", "沙盒：在公开数据上，你和你的代理走完整整一轮——机器人跑你的代码并回信。无需审批，无需等待。")}</p><a class="go" href="#start">${t("→ Send your first letter", "→ 寄出第一封信")}</a></article>
+<article class="card act"><h3>${t("Join a project", "加入项目")}</h3><p>${t("Bring a question, code, compute, or a licence to a running project — a mentor guides your first rounds.", "带问题、代码、算力或授权，加入进行中的项目——由导师带你走完头几轮。")}</p><a class="go" href="#projects">${t("→ See projects", "→ 看项目")}</a></article>
 <article class="card act"><h3>${t("Hold data", "有数据")}</h3><p>${t("Post a silhouette of what you hold. It never moves; code comes to you.", "登一张剪影。数据从不移动，代码上门。")}</p><a class="go" href="${ISSUES}">${t("→ Post an offering", "→ 登一张提供")}</a></article>
-<article class="card act"><h3>${t("Join a project", "加入项目")}</h3><p>${t("Bring an idea, code, compute, or a licence to an open project.", "带想法、代码、算力或授权，加入开放项目。")}</p><a class="go" href="#projects">${t("→ See projects", "→ 看项目")}</a></article>
 <article class="card act"><h3>${t("Start your own", "自己开")}</h3><p>${t("The protocol is a template — one command makes a private project.", "协议就是模板——一条命令建私有项目。")}</p><a class="go" href="#start">${t("→ How to start", "→ 如何开始")}</a></article>
 </div>`)}
 
@@ -269,10 +279,10 @@ ${chapter("how", true, "02", t("How it works", "怎么运作"),
 </div>
 <p class="sub-h">${t("The four rules", "四条规矩")}</p>
 <ol class="rules">
-<li><b>${t("Data never moves.", "数据从不移动。")}</b> ${t("Code travels to the data; only aggregates come back. CI rejects raw data.", "代码走向数据；回来的只有聚合结果。CI 拒绝原始数据。")}</li>
-<li><b>${t("Three gates, opened only by humans.", "三道闸，只有人能开。")}</b> ${t("Choosing a topic, running code on data, and merging — each is a person's call.", "选课题、在数据上跑代码、合并——每件都由人拍板。")}</li>
-<li><b>${t("Agents draft; agents never decide.", "代理起草；代理从不决定。")}</b> ${t("No agent opens a PR, merges, or runs on real data unless its human asked.", "任何代理都不得擅自开 PR、合并或在真实数据上运行，除非它的人要求。")}</li>
-<li><b>${t("Everything on the record.", "全程留痕。")}</b> ${t("Every question, result, and dead end is a versioned file. Failures get a post-mortem.", "每个问题、结果、死路都是带版本的文件。失败有尸检报告。")}</li>
+<li><b>${t("Three gates, opened only by humans.", "三道闸，只有人能开。")}</b> ${t("Choosing a topic, running code on data, and merging — each is a person's call. This is the part built for the age of agents.", "选课题、在数据上跑代码、合并——每件都由人拍板。这一条，是为代理时代而设计的。")}</li>
+<li><b>${t("Agents draft; agents never decide.", "代理起草；代理从不决定。")}</b> ${t("No agent opens a PR, merges, or runs on real data unless its human asked. The human is the author; the agent is the pen.", "任何代理都不得擅自开 PR、合并或在真实数据上运行，除非它的人要求。人是作者，代理是笔。")}</li>
+<li><b>${t("Data never moves.", "数据从不移动。")}</b> ${t("Code travels to the data; only aggregates come back. Medical research has run this code-to-data loop for years (OpenSAFELY) — here it's the proven foundation, not the novelty.", "代码走向数据；回来的只有聚合结果。医学研究已用这套代码上门的机制多年（OpenSAFELY）——在这里它是成熟的地基，而非新意所在。")}</li>
+<li><b>${t("Everything on the record.", "全程留痕。")}</b> ${t("Every question, result, and dead end is a versioned file — and that record is a priority claim: it protects ideas the way the boundary protects data.", "每个问题、结果、死路都是带版本的文件——而这份记录本身就是优先权凭证：它保护想法，正如边界保护数据。")}</li>
 </ol>`)}
 
 ${chapter("limits", false, "03", t("What we give, what we don't", "给什么，不给什么"),
@@ -298,9 +308,9 @@ ${chapter("readers", true, "04", t("Two readers", "两种读者"),
 `<div class="grid two">
 <article class="card reader"><h3><span class="k">${t("For you", "给你")}</span>${t("How a human reads it", "人怎么读")}</h3>
 <ul>
-<li>${t("5 min — ", "5 分钟——")}<a href="${ORG}/protocol/tree/main/exchange/R000-example-hello">${t("read one letter", "读一封信")}</a></li>
+<li>${t("5 min — ", "5 分钟——")}<a href="${ORG}/sandbox/tree/main/exchange/R001-tip-by-hour">${t("read one real letter", "读一封真实的信")}</a></li>
 <li>${t("15 min — ", "15 分钟——")}<a href="${ORG}/protocol/blob/main/AGENTS.md">${t("the whole protocol", "全部协议")}</a></li>
-<li>${t("30 min — the onboarding drill, and you're in.", "30 分钟——入职演练，即入职。")}</li>
+<li>${t("30 min — ", "30 分钟——")}<a href="${ORG}/sandbox">${t("send your first letter in the sandbox", "在沙盒里寄出第一封信")}</a>${t(", and you're in.", "，即入门。")}</li>
 </ul>
 <p style="margin-top:.7rem;font-size:.92rem;color:var(--muted)">${t("You decide at the gates. You are the author; the agent is the pen.", "你在闸口决策。你是作者，代理是笔。")}</p></article>
 <article class="card reader"><h3><span class="k">${t("For your agent", "给你的代理")}</span>${t("How an agent reads it", "代理怎么读")}</h3>
@@ -313,24 +323,24 @@ ${chapter("readers", true, "04", t("Two readers", "两种读者"),
 </div>`)}
 
 ${chapter("start", false, "05", t("Get started", "动手开始"),
-  t("From curious to contributing.", "从好奇到贡献。"),
+  t("The fastest way to understand it is to do one round. Start in the sandbox.", "理解它最快的办法，是亲手走一轮。从沙盒开始。"),
 `<ol class="journey">
-<li><h3>${t("Look around", "先逛逛")}</h3><p>${t("Browse the board and projects; read one letter to feel the loop.", "看看布告栏和项目；读一封信，体会循环。")}</p></li>
-<li><h3>${t("Pick your door", "选一扇门")}</h3><p><a href="${ISSUES}">${t("Apply, post a notice, or propose a project", "申请、登布告，或提议项目")}</a> — ${t("say who you are and what you bring.", "说明你是谁、带来什么。")}</p></li>
-<li><h3>${t("Onboard with your agent", "带上代理入职")}</h3><p>${t("The guide takes you from no account to working, and ends with a drill: one practice round.", "指南把你从没有账号带到能工作，结尾是一次演练：一个练习 round。")}</p></li>
+<li><h3>${t("Send your first letter — in the sandbox", "在沙盒里寄出第一封信")}</h3><p>${t("Public taxi data, a robot Runner. You and your agent do one whole round — ask, code, safety scan, run, result, merge — in about 30 minutes, start to finish.", "公开的出租车数据，一个机器人执行方。你和你的代理走完整整一轮——提问、写码、安全扫描、运行、出结果、合并——大约 30 分钟从头到尾。")} <a href="${ORG}/sandbox">${t("→ republic-of-letters/sandbox", "→ republic-of-letters/sandbox")}</a></p></li>
+<li><h3>${t("Join a real project", "加入一个真实项目")}</h3><p><a href="${ISSUES}">${t("Apply to a running project", "申请加入进行中的项目")}</a> — ${t("a mentor named in the project approves your first rounds. Or post a notice / propose your own.", "项目中指定的导师会为你的头几轮把关。也可以登布告，或自己提议一个。")}</p></li>
+<li><h3>${t("Onboard with your agent", "带上代理入职")}</h3><p>${t("The guide takes you from no account to working. Hand your agent the brief; it learns the protocol and does the legwork.", "指南把你从没有账号带到能工作。把简报交给你的代理；它学会协议，替你跑腿。")}</p></li>
 <li><h3>${t("Work in rounds", "以 round 工作")}</h3><p>${t("Propose code; results come back in-thread; humans call GO and merge.", "提出代码；结果寄回同一线程；人来判 GO 和合并。")}</p></li>
 </ol>
 <p class="sub-h" style="margin-top:1.4rem">${t("Already a team? Take the machinery", "已有团队？直接拿走机制")}</p>
 <pre><code>gh repo create &lt;owner&gt;/&lt;name&gt; --template ${PROTOCOL_TEMPLATE} --private</code></pre>
-<p style="margin-top:1.1rem"><a class="cta" href="${ISSUES}">${t("Apply, propose, or post a notice →", "申请、提议或登布告 →")}</a></p>`)}
+<p style="margin-top:1.1rem"><a class="cta" href="${ORG}/sandbox">${t("Try the sandbox →", "试试沙盒 →")}</a> <a class="cta" href="${ISSUES}" style="background:var(--card);color:var(--accent);border:1px solid var(--line);margin-left:.5rem">${t("Apply or propose →", "申请或提议 →")}</a></p>`)}
 
-${chapter("board", true, "06", t("The board", "布告栏"),
-  t("Silhouettes only — who holds data, who needs it. Coarse by design; every notice expires.", "只登剪影——谁有数据、谁需要。粗粒度是刻意的；每张都有有效期。"),
-`<div class="grid">${board}</div>`)}
-
-${chapter("projects", false, "07", t("Projects", "项目"),
-  t("Research lives in private repos; cards show only what each project approved.", "研究在私有仓库进行；卡片只展示各项目批准公开的部分。"),
+${chapter("projects", true, "06", t("Projects", "项目"),
+  t("Most people join here — invited into a running project, mentored through their first rounds. Research lives in private repos; cards show only what each project approved.", "多数人从这里加入——受邀进入进行中的项目，由导师带完头几轮。研究在私有仓库进行；卡片只展示各项目批准公开的部分。"),
 `<div class="grid">${projects}</div>`)}
+
+${chapter("board", false, "07", t("The board", "布告栏"),
+  t("A second way in, for when no project fits yet: silhouettes of who holds data and who needs it. Coarse by design; every notice expires. Most collaborations start from a project, not the board.", "第二条路，当暂时没有合适的项目时：谁有数据、谁需要，只登剪影。粗粒度是刻意的；每张都有有效期。多数合作始于项目，而非布告栏。"),
+`<div class="grid">${board}</div>`)}
 
 <footer><div class="wrap">
 ${t("Named for the 17th-century scholars' network that did science by mail. ", "名字取自十七世纪靠书信做科学的学者网络。")}
@@ -358,8 +368,12 @@ never enters any repository, ever.
 
 ## How the org is organized
 - Org:            ${ORG}
-- protocol/       public template repo. The contract is protocol/AGENTS.md. Every project
-                  is created from it: gh repo create <owner>/<name> --template ${PROTOCOL_TEMPLATE} --private
+- protocol/       public template repo. The contract is protocol/AGENTS.md (中文: AGENTS.zh.md;
+                  English is authoritative). Every project is created from it:
+                  gh repo create <owner>/<name> --template ${PROTOCOL_TEMPLATE} --private
+- sandbox/        public practice project (tier: open). Walk one full round on public NYC-taxi
+                  data with a robot Runner — the fastest way to learn the loop end to end.
+                  Start here: ${ORG}/sandbox
 - <project>/      one private repo per project. Inside:
     PROJECT.md          members, who the Runner is, the data statement
     topics/T<NN>/TOPIC.md   one candidate paper: hypotheses, falsifier, authorship, decision log
@@ -378,6 +392,12 @@ never enters any repository, ever.
    scripts/scan-round.sh, surface the result to your human, and stop.
 4. The durable layer is files, not chat. Write decisions into TOPIC.md / ASK.md / RESULT.md
    BEFORE acting on them. A fresh session rebuilds context only from committed files.
+5. The archive is a priority claim. Opening a topic or round timestamps who proposed which
+   hypothesis — the idea side's protection, symmetric to the data boundary. Taking a
+   hypothesis disclosed inside a project outside it, or using it without credit, is as
+   serious a breach as moving raw data. Before a topic's first analysis round runs, a
+   one-line provisional credit line goes in TOPIC.md (originator + default co-authorship
+   with the Runner); full authorship is settled no later than GO.
 
 ## How to read a project (context load order)
 1. protocol/AGENTS.md
@@ -387,7 +407,9 @@ never enters any repository, ever.
 5. the open pull-request thread
 
 ## How to operate (exact steps)
-- Onboard: follow protocol/ONBOARDING.md; finish with the drill (one practice round, end to end).
+- Practise first: do one full round in ${ORG}/sandbox (public data, robot Runner) — its
+  README.md is a 30-minute end-to-end walkthrough. This is the drill.
+- Onboard into a real project: follow protocol/ONBOARDING.md.
 - Propose a round: ./scripts/new-round.sh "short slug"  ->  fill ASK.md  ->  write run.py
   (read os.environ["DATA_ROOT"], write only ./result/, no network, no absolute paths)  ->
   bash scripts/check.sh  ->  open the PR ONLY if your human asked.
@@ -395,8 +417,9 @@ never enters any repository, ever.
   run sandboxed with DATA_ROOT set  ->  commit result/  ->  never commit raw rows.
 
 ## Canonical, machine-readable sources
-- Protocol (authoritative): ${ORG}/protocol/blob/main/AGENTS.md
+- Protocol (authoritative): ${ORG}/protocol/blob/main/AGENTS.md  (中文: AGENTS.zh.md)
 - Onboarding:               ${ORG}/protocol/blob/main/ONBOARDING.md
+- Sandbox (practice round):  ${ORG}/sandbox
 - Open board (JSON):        https://letters.jupyter.pro/board.json
 - Projects (JSON):          https://letters.jupyter.pro/projects.json
 
